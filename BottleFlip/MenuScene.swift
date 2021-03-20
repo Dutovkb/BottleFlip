@@ -15,6 +15,8 @@ class MenuScene: SKScene {
     var bottleNode = SKSpriteNode()
     var leftButtonNode = SKSpriteNode()
     var rightButtonNode = SKSpriteNode()
+    var flipsTagNode = SKSpriteNode()
+    var unlockLabelNode = SKLabelNode()
     
     var highScore = 0
     var totalFlips = 0
@@ -23,7 +25,7 @@ class MenuScene: SKScene {
     var totalBottleCount = 0
     
     override func didMove(to view: SKView) {
-        self.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        self.backgroundColor = UI_BACKGROUND_COLOR
         
         // Loading bottles from items.plist
         totalBottleCount = bottles.count
@@ -80,6 +82,17 @@ class MenuScene: SKScene {
         self.changeButton(rightButtonNode , state: true)
         self.addChild(rightButtonNode)
         
+        //Lock Node
+        flipsTagNode = ButtonNode(imageNode: "lock", position: CGPoint(x: self.frame.midX + bottleNode.size.width * 0.25, y: self.frame.minY + bottleNode.size.height/2 + 94), xScale: 0.5, yScale: 0.5)
+        flipsTagNode.zPosition = 25
+        flipsTagNode.zRotation = 0.3
+        self.addChild(flipsTagNode)
+        
+        //Unlock label
+        unlockLabelNode = LabelNode(text: "0", fontSize: 36, position: CGPoint(x: 0, y: -unlockLabelNode.frame.size.height + 25), fontColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        unlockLabelNode.zPosition = 30
+        flipsTagNode.addChild(unlockLabelNode)
+        
         //Update selected bottle
         self.updateSelectedBottle(selectedBottle)
     }
@@ -104,6 +117,11 @@ class MenuScene: SKScene {
                                  height: bottleNode.texture!.size().height * CGFloat(bottle.YScale!.floatValue))
         
         bottleNode.position = CGPoint(x: self.frame.midX, y: self.frame.minY + bottleNode.size.height / 2 + 94)
+        
+        flipsTagNode.position = CGPoint(x: self.frame.midX + bottleNode.size.width * 0.25, y: self.frame.minY + bottleNode.size.height/2 + 94)
+        
+        unlockLabelNode.text = "\(bottle.MinFlips!.intValue)"
+        unlockLabelNode.position = CGPoint(x: 0, y: -unlockLabelNode.frame.size.height + 25)
         
         self.updateArrowsState()
     }
