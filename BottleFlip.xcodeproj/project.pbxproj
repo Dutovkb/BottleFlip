@@ -18,6 +18,9 @@
 		0B3C88812605E79600C1F163 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C88802605E79600C1F163 /* ButtonNode.swift */; };
 		0B3C88842605F33400C1F163 /* LabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C88832605F33400C1F163 /* LabelNode.swift */; };
 		0B3C8887260600FF00C1F163 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C8886260600FF00C1F163 /* Constants.swift */; };
+		0B3C888A2606099D00C1F163 /* Items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B3C88892606099D00C1F163 /* Items.plist */; };
+		0B3C888D26060BAA00C1F163 /* Bottle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C888C26060BAA00C1F163 /* Bottle.swift */; };
+		0B3C889126060D3500C1F163 /* BottleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C889026060D3500C1F163 /* BottleController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		0B3C88802605E79600C1F163 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		0B3C88832605F33400C1F163 /* LabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelNode.swift; sourceTree = "<group>"; };
 		0B3C8886260600FF00C1F163 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0B3C88892606099D00C1F163 /* Items.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Items.plist; sourceTree = "<group>"; };
+		0B3C888C26060BAA00C1F163 /* Bottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottle.swift; sourceTree = "<group>"; };
+		0B3C889026060D3500C1F163 /* BottleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,11 +73,14 @@
 			isa = PBXGroup;
 			children = (
 				0B3C88622605E2AA00C1F163 /* AppDelegate.swift */,
+				0B3C88892606099D00C1F163 /* Items.plist */,
 				0B3C88642605E2AA00C1F163 /* GameScene.sks */,
 				0B3C88682605E2AA00C1F163 /* GameScene.swift */,
 				0B3C88792605E40B00C1F163 /* MenuScene.swift */,
 				0B3C88832605F33400C1F163 /* LabelNode.swift */,
 				0B3C8886260600FF00C1F163 /* Constants.swift */,
+				0B3C888C26060BAA00C1F163 /* Bottle.swift */,
+				0B3C889026060D3500C1F163 /* BottleController.swift */,
 				0B3C88802605E79600C1F163 /* ButtonNode.swift */,
 				0B3C887C2605E42B00C1F163 /* MenuScene.sks */,
 				0B3C886A2605E2AA00C1F163 /* GameViewController.swift */,
@@ -139,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B3C888A2606099D00C1F163 /* Items.plist in Resources */,
 				0B3C886E2605E2AA00C1F163 /* Main.storyboard in Resources */,
 				0B3C88652605E2AA00C1F163 /* GameScene.sks in Resources */,
 				0B3C88702605E2AC00C1F163 /* Assets.xcassets in Resources */,
@@ -154,11 +164,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B3C88692605E2AA00C1F163 /* GameScene.swift in Sources */,
+				0B3C888D26060BAA00C1F163 /* Bottle.swift in Sources */,
 				0B3C887A2605E40B00C1F163 /* MenuScene.swift in Sources */,
 				0B3C88842605F33400C1F163 /* LabelNode.swift in Sources */,
 				0B3C886B2605E2AA00C1F163 /* GameViewController.swift in Sources */,
 				0B3C8887260600FF00C1F163 /* Constants.swift in Sources */,
 				0B3C88632605E2AA00C1F163 /* AppDelegate.swift in Sources */,
+				0B3C889126060D3500C1F163 /* BottleController.swift in Sources */,
 				0B3C88812605E79600C1F163 /* ButtonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
