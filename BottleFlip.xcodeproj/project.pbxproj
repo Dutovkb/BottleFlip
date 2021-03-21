@@ -22,6 +22,10 @@
 		0B3C888D26060BAA00C1F163 /* Bottle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C888C26060BAA00C1F163 /* Bottle.swift */; };
 		0B3C889126060D3500C1F163 /* BottleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C889026060D3500C1F163 /* BottleController.swift */; };
 		0B810CAC260771070064CC6A /* SimpleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B810CAB260771070064CC6A /* SimpleScene.swift */; };
+		0B810CB026079E610064CC6A /* BottleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B810CAF26079E610064CC6A /* BottleNode.swift */; };
+		0B810CC72607A2150064CC6A /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B810CC62607A2150064CC6A /* win.mp3 */; };
+		0B810CCA2607A2190064CC6A /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B810CC92607A2190064CC6A /* pop.mp3 */; };
+		0B810CCD2607A21D0064CC6A /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B810CCC2607A21D0064CC6A /* fail.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		0B3C888C26060BAA00C1F163 /* Bottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottle.swift; sourceTree = "<group>"; };
 		0B3C889026060D3500C1F163 /* BottleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleController.swift; sourceTree = "<group>"; };
 		0B810CAB260771070064CC6A /* SimpleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleScene.swift; sourceTree = "<group>"; };
+		0B810CAF26079E610064CC6A /* BottleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleNode.swift; sourceTree = "<group>"; };
+		0B810CC62607A2150064CC6A /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		0B810CC92607A2190064CC6A /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
+		0B810CCC2607A21D0064CC6A /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,23 +83,123 @@
 			isa = PBXGroup;
 			children = (
 				0B3C88622605E2AA00C1F163 /* AppDelegate.swift */,
-				0B3C88892606099D00C1F163 /* Items.plist */,
-				0B3C88642605E2AA00C1F163 /* GameScene.sks */,
-				0B3C88682605E2AA00C1F163 /* GameScene.swift */,
-				0B3C88792605E40B00C1F163 /* MenuScene.swift */,
-				0B810CAB260771070064CC6A /* SimpleScene.swift */,
-				0B3C88832605F33400C1F163 /* LabelNode.swift */,
-				0B3C8886260600FF00C1F163 /* Constants.swift */,
-				0B3C888C26060BAA00C1F163 /* Bottle.swift */,
-				0B3C889026060D3500C1F163 /* BottleController.swift */,
-				0B3C88802605E79600C1F163 /* ButtonNode.swift */,
-				0B3C887C2605E42B00C1F163 /* MenuScene.sks */,
-				0B3C886A2605E2AA00C1F163 /* GameViewController.swift */,
-				0B3C886C2605E2AA00C1F163 /* Main.storyboard */,
-				0B3C886F2605E2AC00C1F163 /* Assets.xcassets */,
 				0B3C88712605E2AC00C1F163 /* Info.plist */,
+				0B810CC32607A1690064CC6A /* Resources */,
+				0B810CB22607A0B90064CC6A /* Scenes */,
+				0B810CB82607A0FD0064CC6A /* Nodes */,
+				0B810CBE2607A1300064CC6A /* Config */,
+				0B810CC22607A1520064CC6A /* Model */,
+				0B810CC02607A13F0064CC6A /* Controllers */,
+				0B810CC42607A1890064CC6A /* Views */,
 			);
 			path = BottleFlip;
+			sourceTree = "<group>";
+		};
+		0B810CB22607A0B90064CC6A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				0B810CB42607A0CC0064CC6A /* Game Scene */,
+				0B810CB62607A0E50064CC6A /* Menu Scene */,
+				0B810CAB260771070064CC6A /* SimpleScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		0B810CB42607A0CC0064CC6A /* Game Scene */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C88642605E2AA00C1F163 /* GameScene.sks */,
+				0B3C88682605E2AA00C1F163 /* GameScene.swift */,
+			);
+			path = "Game Scene";
+			sourceTree = "<group>";
+		};
+		0B810CB62607A0E50064CC6A /* Menu Scene */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C88792605E40B00C1F163 /* MenuScene.swift */,
+				0B3C887C2605E42B00C1F163 /* MenuScene.sks */,
+			);
+			path = "Menu Scene";
+			sourceTree = "<group>";
+		};
+		0B810CB82607A0FD0064CC6A /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				0B810CBC2607A1210064CC6A /* Game Nodes */,
+				0B810CBA2607A1130064CC6A /* UI Nodes */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		0B810CBA2607A1130064CC6A /* UI Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C88832605F33400C1F163 /* LabelNode.swift */,
+				0B3C88802605E79600C1F163 /* ButtonNode.swift */,
+			);
+			path = "UI Nodes";
+			sourceTree = "<group>";
+		};
+		0B810CBC2607A1210064CC6A /* Game Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				0B810CAF26079E610064CC6A /* BottleNode.swift */,
+			);
+			path = "Game Nodes";
+			sourceTree = "<group>";
+		};
+		0B810CBE2607A1300064CC6A /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C8886260600FF00C1F163 /* Constants.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		0B810CC02607A13F0064CC6A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C889026060D3500C1F163 /* BottleController.swift */,
+				0B3C886A2605E2AA00C1F163 /* GameViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0B810CC22607A1520064CC6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C888C26060BAA00C1F163 /* Bottle.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B810CC32607A1690064CC6A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0B810CC52607A1AE0064CC6A /* Sounds */,
+				0B3C88892606099D00C1F163 /* Items.plist */,
+				0B3C886F2605E2AC00C1F163 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0B810CC42607A1890064CC6A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C886C2605E2AA00C1F163 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0B810CC52607A1AE0064CC6A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				0B810CC62607A2150064CC6A /* win.mp3 */,
+				0B810CC92607A2190064CC6A /* pop.mp3 */,
+				0B810CCC2607A21D0064CC6A /* fail.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,8 +261,11 @@
 			files = (
 				0B3C888A2606099D00C1F163 /* Items.plist in Resources */,
 				0B3C886E2605E2AA00C1F163 /* Main.storyboard in Resources */,
+				0B810CCD2607A21D0064CC6A /* fail.mp3 in Resources */,
 				0B3C88652605E2AA00C1F163 /* GameScene.sks in Resources */,
+				0B810CC72607A2150064CC6A /* win.mp3 in Resources */,
 				0B3C88702605E2AC00C1F163 /* Assets.xcassets in Resources */,
+				0B810CCA2607A2190064CC6A /* pop.mp3 in Resources */,
 				0B3C887D2605E42B00C1F163 /* MenuScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +281,7 @@
 				0B3C888D26060BAA00C1F163 /* Bottle.swift in Sources */,
 				0B3C887A2605E40B00C1F163 /* MenuScene.swift in Sources */,
 				0B3C88842605F33400C1F163 /* LabelNode.swift in Sources */,
+				0B810CB026079E610064CC6A /* BottleNode.swift in Sources */,
 				0B3C886B2605E2AA00C1F163 /* GameViewController.swift in Sources */,
 				0B3C8887260600FF00C1F163 /* Constants.swift in Sources */,
 				0B810CAC260771070064CC6A /* SimpleScene.swift in Sources */,

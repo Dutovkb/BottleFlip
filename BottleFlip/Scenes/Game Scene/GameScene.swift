@@ -13,8 +13,10 @@ class GameScene: SimpleScene {
     var highscoreLabelNode = SKLabelNode()
     var backButtonNode = SKSpriteNode()
     var resetButtonNode = SKSpriteNode()
-    var tutorialNode = SKSpriteNode()
+    var tutorialNode = SKSpriteNode() 
     var bottleNode = SKSpriteNode()
+    
+    var didSwipe = false
     
     override func didMove(to view: SKView) {
         //Setting the scene
@@ -65,6 +67,11 @@ class GameScene: SimpleScene {
         tableNode.yScale = 0.45
         tableNode.position = CGPoint(x: self.frame.midX, y: 20)
         self.addChild(tableNode)
+        
+        //Bottle Node
+        let selectedBottle = self.userData?["bottle"] as? Bottle
+        bottleNode = BottleNode(selectedBottle!)
+        self.addChild(bottleNode)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -74,6 +81,14 @@ class GameScene: SimpleScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
+            
+            if backButtonNode.contains(location) {
+                self.changeToSceneBy(nameScene: "MenuScene", userData: NSMutableDictionary.init())
+            }
+            
+            if ((resetButtonNode.contains(location)) && didSwipe == true) {
+                failedFlip()
+            }
               
             if tutorialNode.contains(location) {
                 tutorialNode.isHidden = true
@@ -81,8 +96,21 @@ class GameScene: SimpleScene {
                 UserDefaults.standard.synchronize()
             }
         }
+    }
+    
+    func failedFlip() {
         
-        
+        self.resetBottle()
+    }
+    
+    func resetBottle() {
+        //Reset bottle after a failed or successful flip
+        bottleNode.position = CGPoint(x: self.frame.midX, y: bottleNode.size.height)
+        bottleNode.physicsBody?.angularVelocity = 0
+        bottleNode.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        bottleNode.speed = 0
+        bottleNode.zRotation = 0
+        didSwipe = false
     }
     
     override func update(_ currentTime: TimeInterval) {
