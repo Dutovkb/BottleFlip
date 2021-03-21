@@ -8,7 +8,7 @@
 import UIKit
 import SpriteKit
 
-class MenuScene: SKScene {
+class MenuScene: SimpleScene {
     
     var playButtonNode = SKSpriteNode()
     var tableNode = SKSpriteNode()
@@ -17,19 +17,26 @@ class MenuScene: SKScene {
     var rightButtonNode = SKSpriteNode()
     var flipsTagNode = SKSpriteNode()
     var unlockLabelNode = SKLabelNode()
+    var restoreButtonNode = SKSpriteNode()
     
     var highScore = 0
     var totalFlips = 0
     var bottles = [Bottle]()
     var selectedBottleIndex = 0
-    var totalBottleCount = 0
+    var totalBottles = 0
+    var isShopButton = false
     
     override func didMove(to view: SKView) {
         self.backgroundColor = UI_BACKGROUND_COLOR
         
         // Loading bottles from items.plist
-        totalBottleCount = bottles.count
         bottles = BottleController.readItems()
+        totalBottles = bottles.count
+        
+        //Get total flips
+        highScore = UserDefaults.standard.integer(forKey: "localHighscore")
+        totalFlips = UserDefaults.standard.integer(forKey: "flips")
+        
         setupUI()
     }
     
@@ -121,7 +128,9 @@ class MenuScene: SKScene {
         unlockLabelNode.isHidden = unlocked
         
         bottleNode.texture = SKTexture(imageNamed: bottle.Sprite!)
-        playButtonNode.texture = SKTexture(imageNamed: unlocked ? "play_button" : "shop_button")
+        playButtonNode.texture = SKTexture(imageNamed: (unlocked ? "play_button" : "shop_button"))
+        
+        isShopButton = !unlocked
         
         bottleNode.size = CGSize(width: bottleNode.texture!.size().width * CGFloat(bottle.XScale!.floatValue),
                                  height: bottleNode.texture!.size().height * CGFloat(bottle.YScale!.floatValue))
@@ -138,12 +147,18 @@ class MenuScene: SKScene {
     
     func updateArrowsState() {
         self.changeButton(leftButtonNode, state: Bool(truncating: selectedBottleIndex as NSNumber))
-        self.changeButton(rightButtonNode, state: selectedBottleIndex != totalBottleCount - 1)
+        self.changeButton(rightButtonNode, state: selectedBottleIndex != totalBottles - 1)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
+            
             let location = touch.location(in: self)
+            
+            //Play button is pressed
+            if playButtonNode.contains(location) {
+                self.startGame()
+            }
             
             // Left button is pressed
             if leftButtonNode.contains(location) {
@@ -156,7 +171,7 @@ class MenuScene: SKScene {
             // Right button is pressed
             if rightButtonNode.contains(location) {
                 let nextIndex = selectedBottleIndex + 1
-                if nextIndex >= totalBottleCount {
+                if nextIndex < totalBottles {
                     self.updateByIndex(nextIndex)
                 }
             }
@@ -178,5 +193,16 @@ class MenuScene: SKScene {
         let skaleUpAction = SKAction.scale(to: 0.5, duration: 0.5)
         let seq = SKAction.sequence([scaleDownAction, skaleUpAction])
         node.run(SKAction.repeatForever(seq))
+    }
+    
+    func startGame() {
+        // Not shop button, so start game
+        if !isShopButton {
+            let userData: NSMutableDictionary = ["bottle": bottles[selectedBottleIndex]]
+            self.changeToSceneBy(nameScene: "GameScene", userData: userData)
+        } else {
+            //Start in-app purchases
+            print("Start iAP")
+        }
     }
 }
