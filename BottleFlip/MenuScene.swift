@@ -95,6 +95,7 @@ class MenuScene: SKScene {
         
         //Update selected bottle
         self.updateSelectedBottle(selectedBottle)
+        self.pulseLockNode(flipsTagNode)
     }
     
     func changeButton(_ buttonNode: SKSpriteNode, state: Bool) {
@@ -111,7 +112,16 @@ class MenuScene: SKScene {
     }
     
     func updateSelectedBottle(_ bottle: Bottle) {
+        
+        // Update to the selected bottle
+        let unlockFilps = bottle.MinFlips!.intValue - highScore
+        let unlocked = (unlockFilps <= 0)
+        
+        flipsTagNode.isHidden = unlocked
+        unlockLabelNode.isHidden = unlocked
+        
         bottleNode.texture = SKTexture(imageNamed: bottle.Sprite!)
+        playButtonNode.texture = SKTexture(imageNamed: unlocked ? "play_button" : "shop_button")
         
         bottleNode.size = CGSize(width: bottleNode.texture!.size().width * CGFloat(bottle.XScale!.floatValue),
                                  height: bottleNode.texture!.size().height * CGFloat(bottle.YScale!.floatValue))
@@ -146,7 +156,7 @@ class MenuScene: SKScene {
             // Right button is pressed
             if rightButtonNode.contains(location) {
                 let nextIndex = selectedBottleIndex + 1
-                if nextIndex < totalBottleCount {
+                if nextIndex >= totalBottleCount {
                     self.updateByIndex(nextIndex)
                 }
             }
@@ -160,5 +170,13 @@ class MenuScene: SKScene {
         
         self.updateSelectedBottle(bottle)
         BottleController.saveSelectedBottle(selectedBottleIndex)
+    }
+    
+    func pulseLockNode(_ node: SKSpriteNode) {
+        //Pulse animation for lock
+        let scaleDownAction = SKAction.scale(to: 0.35, duration: 0.5)
+        let skaleUpAction = SKAction.scale(to: 0.5, duration: 0.5)
+        let seq = SKAction.sequence([scaleDownAction, skaleUpAction])
+        node.run(SKAction.repeatForever(seq))
     }
 }
