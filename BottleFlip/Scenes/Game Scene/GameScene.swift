@@ -17,6 +17,7 @@ class GameScene: SimpleScene {
     var bottleNode = SKSpriteNode()
     
     var didSwipe = false
+    var currentScore = 0
     
     override func didMove(to view: SKView) {
         //Setting the scene
@@ -99,7 +100,9 @@ class GameScene: SimpleScene {
     }
     
     func failedFlip() {
+        currentScore = 0
         
+        self.updateScore()
         self.resetBottle()
     }
     
@@ -115,5 +118,57 @@ class GameScene: SimpleScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        self.checkIfSuccesfulFLip()
+    }
+    
+    func checkIfSuccesfulFLip() {
+        if (bottleNode.position.x <= 0 || bottleNode.position.x >= self.frame.size.width || bottleNode.position.y <= 0) {
+            self.failedFlip()
+        }
+        
+        if (didSwipe && bottleNode.physicsBody!.isResting) {
+            let bottleRotation = (bottleNode.zRotation)
+            
+            if bottleRotation > 0 && bottleRotation < 0.05 {
+                self.successFlip()
+            } else {
+                self.failedFlip()
+            }
+        }
+    }
+    
+    func successFlip() {
+        self.updateFlips()
+        
+        currentScore += 1
+        self.updateScore()
+        self.resetBottle()
+    }
+    
+    func updateScore() {
+        scoreLabelNode.text = "\(currentScore)"
+        
+        let localHighscore = UserDefaults.standard.integer(forKey: "localHighscore")
+        
+        if currentScore > localHighscore {
+            highscoreLabelNode.isHidden = false
+            
+            let fadeAction = SKAction.fadeAlpha(to: 0, duration: 1.0)
+            highscoreLabelNode.run(fadeAction) {
+                self.highscoreLabelNode.isHidden = true
+            }
+            UserDefaults.standard.set(currentScore, forKey: "localHighscore")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    func updateFlips() {
+        //Update total flips
+        var flips = UserDefaults.standard.integer(forKey: "flips")
+        
+        flips += 1
+        UserDefaults.standard.set(flips, forKey: "flips")
+        UserDefaults.standard.synchronize()
     }
 }
