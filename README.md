@@ -1,4 +1,4 @@
-# BottleFlip
+# CloneBottleFlip
 
 Игра написанная с помощью SpriteKit.
 
