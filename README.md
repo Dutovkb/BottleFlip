@@ -2,4 +2,4 @@
 
 Игра написанная с помощью SpriteKit.
 
-![alt text](1.png)​
+![alt text](screen.png)​
